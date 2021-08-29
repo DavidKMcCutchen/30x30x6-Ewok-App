@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="col-50" layout="row" layout-align="center center">
+      <ewok-ewoks-list
+        [ewoks]="allEwoks$ | async"
+        (selected)="selectEwok($event)"
+        (deleted)="deleteEwok($event)"
+        (ewokViewed)="viewEwok($event)"
+      ></ewok-ewoks-list>
+    </div>
+    <div class="col-50" layout="row" layout-align="center center">
+      <ewok-ewoks-details
+        [ewok]="selectedEwok$ | async"
+        (saved)="saveEwok($event)"
+        (cancelled)="resetEwok()"
+        [form]="form"
+      ></ewok-ewoks-details>
+    </div>
+  </div>

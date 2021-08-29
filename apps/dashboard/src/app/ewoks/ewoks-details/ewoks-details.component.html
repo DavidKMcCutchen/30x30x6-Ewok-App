@@ -1,0 +1,85 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1>
+        <span *ngIf="currentEwok.id; else elseBlock">{{
+          originalTitle
+        }}</span>
+        <ng-template #elseBlock>Create a Ewok</ng-template>
+      </h1>
+    </mat-card-title>
+  </mat-card-header>
+  <form
+    [formGroup]="form"
+    #formDirective="ngForm"
+    (ngSubmit)="save(formDirective)"
+  >
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width" floatLabel="always">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          placeholder="Name"
+          formControlName="name"
+          type="text"
+          name="name"
+        />
+      </mat-form-field>
+
+      
+
+      <mat-form-field appearance="outline" class="full-width" floatLabel="always">
+          <mat-label>Tribe</mat-label>
+          <input
+            matInput
+            placeholder="Tribe"
+            formControlName="tribe"
+            type="text"
+            name="tribe"
+          />
+        </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width" floatLabel="always">
+        <mat-label>Height</mat-label>
+        <input
+          matInput
+          placeholder="Height"
+          formControlName="height"
+          type="text"
+          name="Height"
+        />
+      </mat-form-field>
+
+
+      <section class="full-width">
+        <mat-label>
+          Furriness:
+          {{ this.form.get('furriness')?.value }}/100
+        </mat-label>
+
+        <mat-slider
+          class="full-width"
+          formControlName="furriness"
+          min="0"
+          max="100"
+          thumbLabel
+          name="furriness"
+        ></mat-slider>
+      </section>
+
+      <section>
+          <mat-checkbox formControlName="warrior" placeholder="Warrior"
+            >Is this Ewok a Warrior?</mat-checkbox
+          >
+        </section>
+
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="submit" mat-button color="primary">
+        {{ originalTitle ? 'Save' : 'Create' }}
+      </button>
+      <button type="button" mat-button (click)="cancel()">Cancel</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
